@@ -1,12 +1,20 @@
 import styled from "styled-components";
 
 function App() {
-  const item = { name: "222", quantity: 132 };
+  const items = [
+    { name: "222", quantity: 132 },
+    { name: "2023", quantity: 22 },
+    { name: "moshe", quantity: 32432434 },
+  ];
   return (
-    <Container>
-      <ItemName>{item.name}:</ItemName>
-      <ItemQuantity>{item.quantity}</ItemQuantity>
-    </Container>
+    <>
+      {items.map((item) => (
+        <Container>
+          <ItemName>{item.name}:</ItemName>
+          <ItemQuantity>{item.quantity}</ItemQuantity>
+        </Container>
+      ))}
+    </>
   );
 }
 
