@@ -1,15 +1,35 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 function App() {
-  const items = [
-    { name: "222", quantity: 132 },
-    { name: "2023", quantity: 22 },
-    { name: "moshe", quantity: 32432434 },
-  ];
+  const useInventory = () => {
+    const [inventory, setInventory] = useState([]);
+
+    useEffect(() => {
+      //async function to get data
+      const getData = async () => {
+        try {
+          const response = await fetch(" http://34.238.153.187:8085/inventory"); //fatching data
+          let data = await response.json(); //make it a json format
+          setInventory(data); //update the inventory state
+        } catch (error) {
+          console.log("Error:", error);
+
+          // setIsError(true);
+        }
+      };
+      getData();
+    }, []);
+
+    return inventory;
+  };
+
+  const items = useInventory();
+
   return (
     <>
-      {items.map((item) => (
-        <Container>
+      {items.map((item, index) => (
+        <Container key={index}>
           <ItemName>{item.name}:</ItemName>
           <ItemQuantity>{item.quantity}</ItemQuantity>
         </Container>
