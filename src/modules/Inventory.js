@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-function App() {
+const Inventory = () => {
   return <div></div>;
-}
+};
 
-export default App;
+export default Inventory;

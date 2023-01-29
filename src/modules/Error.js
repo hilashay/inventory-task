@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-function App() {
+const Error = () => {
   return <div></div>;
-}
+};
 
-export default App;
+export default Error;

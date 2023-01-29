@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-function App() {
+const Reloader = () => {
   return <div></div>;
-}
+};
 
-export default App;
+export default Reloader;
