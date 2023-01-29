@@ -2,7 +2,8 @@ import { useInventory } from "../useInventory";
 import styled from "styled-components";
 
 const Inventory = () => {
-  const items = useInventory();
+  const { inventory } = useInventory();
+  const items = inventory;
 
   return (
     <>

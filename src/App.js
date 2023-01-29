@@ -1,7 +1,20 @@
 import Inventory from "./modules/Inventory";
+import Loader from "./modules/Loader";
+import Error from "./modules/Error";
+import { useInventory } from "./useInventory";
 import styled from "styled-components";
 
 function App() {
+  const { isLoad, isError } = useInventory();
+
+  if (isLoad) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
+
   return <Inventory />;
 }
 
