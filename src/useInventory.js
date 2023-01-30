@@ -11,7 +11,13 @@ export const useInventory = () => {
       //   setTimeout(async () => {
       try {
         const response = await fetch(" http://34.238.153.187:8085/inventory"); //fatching data
-        let data = await response.json(); //make it a json format
+        // let data = await response.json(); //make it a json format
+        let data = [];
+        console.log("data,", data);
+        if (data.length === 0) {
+          setIsError(true);
+          setErrorMessage("Data not available right now, Please try again later");
+        }
         setInventory(data); //update the inventory state
         setIsLoad(false);
       } catch (error) {
