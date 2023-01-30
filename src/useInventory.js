@@ -1,24 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 export const useInventory = () => {
   const [isLoad, setIsLoad] = useState(true);
   const [inventory, setInventory] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     //async function to get data
     const getData = async () => {
+      //   setTimeout(async () => {
       try {
         const response = await fetch(" http://34.238.153.187:8085/inventory"); //fatching data
         let data = await response.json(); //make it a json format
         setInventory(data); //update the inventory state
         setIsLoad(false);
       } catch (error) {
-        console.log("Error:", error);
-        // setIsError(true);
+        setErrorMessage(
+          "Poor internet connection detected, Please chack your internet and try again."
+        );
+        console.log("errorMessage:", error);
+        setIsError(true);
+        setIsLoad(false);
       }
+      //   }, 5000);
     };
     getData();
   }, []);
 
-  return { isLoad, inventory, isError };
+  return { isLoad, inventory, isError, errorMessage };
 };

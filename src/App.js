@@ -5,14 +5,14 @@ import { useInventory } from "./useInventory";
 import styled from "styled-components";
 
 function App() {
-  const { isLoad, isError } = useInventory();
+  const { isLoad, isError, errorMessage } = useInventory();
 
   if (isLoad) {
     return <Loader />;
   }
 
   if (isError) {
-    return <Error />;
+    return <Error errorMessage={errorMessage} />;
   }
 
   return <Inventory />;
