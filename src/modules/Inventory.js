@@ -12,8 +12,8 @@ const Inventory = () => {
     <Container>
       <Title>Products inventory</Title>
       {sortedItems.map((item, index) => (
-        <ItemContainer>
-          <Item key={index}>
+        <ItemContainer key={index}>
+          <Item>
             <ItemName>{item.name}:</ItemName>
             <ItemQuantity>{item.quantity}</ItemQuantity>
             {item.quantity < 25 ? <NoteForLastUnits /> : null}
