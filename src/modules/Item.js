@@ -4,7 +4,7 @@ import NoteForLastUnits from "./NoteForLastUnits";
 const Item = ({ item }) => {
   return (
     <Container>
-      {item.name ? <ItemName> {item.name}</ItemName> : <NoNameItem>No name found:</NoNameItem>}
+      {item.name ? <ItemName> {item.name}:</ItemName> : <NoNameItem>No name found:</NoNameItem>}
       <ItemQuantity>{item.quantity}</ItemQuantity>
       {item.quantity < 25 ? <NoteForLastUnits /> : null}
     </Container>

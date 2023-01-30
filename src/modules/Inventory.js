@@ -4,29 +4,29 @@ import Item from "./Item";
 import { Button } from "../components/common/button";
 
 const Inventory = ({ inventory }) => {
-  const [shouldFilter, setShouldFilter] = useState(false);
-  const items = inventory;
+  const [items, setItems] = useState(inventory);
 
-  const handleClick = (items, direction) => {
-    shouldFilter === true ? setShouldFilter(false) : setShouldFilter(true);
+  const handleClick = (direction) => {
+    const sortedItems = [...items];
 
     if (direction === "high") {
-      return items.sort((item1, item2) =>
+      sortedItems.sort((item1, item2) =>
         item1.quantity < item2.quantity ? 1 : item1.quantity > item2.quantity ? -1 : 0
       );
     } else {
-      return items.sort((item1, item2) =>
+      sortedItems.sort((item1, item2) =>
         item1.quantity < item2.quantity ? -1 : item1.quantity > item2.quantity ? 1 : 0
       );
     }
+    setItems(sortedItems);
   };
 
   return (
     <Container>
       <Title>Products inventory</Title>
       <ButtonContainer>
-        <SortButton onClick={() => handleClick(items, "high")}>High to low</SortButton>
-        <SortButton onClick={() => handleClick(items, "low")}>Low to High</SortButton>
+        <SortButton onClick={() => handleClick("high")}>High to low</SortButton>
+        <SortButton onClick={() => handleClick("low")}>Low to High</SortButton>
       </ButtonContainer>
       <ItemContainer>
         {items.map((item, index) => (
