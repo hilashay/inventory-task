@@ -11,12 +11,15 @@ export const useInventory = () => {
       try {
         const response = await fetch(" http://34.238.153.187:8085/inventory"); //fatching data
         let data = await response.json(); //make it a json format
+
         if (data.length === 0) {
-          setIsError(true);
           setErrorMessage("Data not available right now, Please try again later");
+          setIsLoad(false);
+          setIsError(true);
         }
         data.map((err) => {
           if (err["name"] === "") {
+            setIsLoad(false);
             setIsError(true);
             setErrorMessage(
               "We handling some isuues, part of the details are missing. Please try again later."
@@ -29,7 +32,6 @@ export const useInventory = () => {
         setErrorMessage(
           "Poor internet connection detected, Please chack your internet and try again."
         );
-        console.log("errorMessage:", error);
         setIsError(true);
         setIsLoad(false);
       }
