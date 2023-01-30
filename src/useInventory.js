@@ -9,7 +9,7 @@ export const useInventory = () => {
     //async function to get data
     const getData = async () => {
       try {
-        const response = await fetch(" http://34.238.153.187:8085/inventor"); //fatching data
+        const response = await fetch(" http://34.238.153.187:8085/inventory"); //fatching data
         let data = await response.json(); //make it a json format
         if (data.length === 0) {
           setIsError(true);
