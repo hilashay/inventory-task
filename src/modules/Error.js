@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useInventory } from "../useInventory";
 
 const Error = ({ errorMessage }) => {
   const handleClick = () => {
