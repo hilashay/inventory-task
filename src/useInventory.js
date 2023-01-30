@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 export const useInventory = () => {
   const [isLoad, setIsLoad] = useState(true);
   const [inventory, setInventory] = useState([]);
@@ -6,11 +6,10 @@ export const useInventory = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    //async function to get data
     const getData = async () => {
       try {
-        const response = await fetch("http://34.238.153.187:8085/inventory"); //fatching data
-        let data = await response.json(); //make it a json format
+        const response = await fetch("http://34.238.153.187:8085/inventory");
+        let data = await response.json();
 
         if (data.length === 0) {
           setErrorMessage("Data not available right now, Please try again later");
@@ -19,7 +18,7 @@ export const useInventory = () => {
           return;
         }
 
-        setInventory(data); //update the inventory state
+        setInventory(data);
         setIsLoad(false);
       } catch (error) {
         setErrorMessage(
