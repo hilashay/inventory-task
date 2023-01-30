@@ -1,9 +1,7 @@
-import { useInventory } from "../useInventory";
-import NoteForLastUnits from "./NoteForLastUnits";
 import styled from "styled-components";
+import NoteForLastUnits from "./NoteForLastUnits";
 
-const Inventory = () => {
-  const { inventory } = useInventory();
+const Inventory = ({ inventory }) => {
   const sortedItems = inventory.sort((p1, p2) =>
     p1.quantity < p2.quantity ? 1 : p1.quantity > p2.quantity ? -1 : 0
   );

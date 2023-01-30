@@ -4,7 +4,7 @@ import Error from "./modules/Error";
 import { useInventory } from "./useInventory";
 
 function App() {
-  const { isLoad, isError, errorMessage } = useInventory();
+  const { inventory, isLoad, isError, errorMessage } = useInventory();
 
   if (isLoad) {
     return <Loader />;
@@ -14,7 +14,7 @@ function App() {
     return <Error errorMessage={errorMessage} />;
   }
 
-  return <Inventory />;
+  return <Inventory inventory={inventory} />;
 }
 
 export default App;
