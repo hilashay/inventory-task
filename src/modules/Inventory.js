@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import NoteForLastUnits from "./NoteForLastUnits";
+import Item from "./Item";
 
 const Inventory = ({ inventory }) => {
   const sortedItems = inventory.sort((p1, p2) =>
@@ -9,15 +9,11 @@ const Inventory = ({ inventory }) => {
   return (
     <Container>
       <Title>Products inventory</Title>
-      {sortedItems.map((item, index) => (
-        <ItemContainer key={index}>
-          <Item>
-            <ItemName>{item.name}:</ItemName>
-            <ItemQuantity>{item.quantity}</ItemQuantity>
-            {item.quantity < 25 ? <NoteForLastUnits /> : null}
-          </Item>
-        </ItemContainer>
-      ))}
+      <ItemContainer>
+        {sortedItems.map((item, index) => (
+          <Item item={item} key={index} />
+        ))}
+      </ItemContainer>
     </Container>
   );
 };
@@ -34,7 +30,6 @@ const ItemContainer = styled.div`
   background: #ebf6f5;
   display: flex;
   flex-direction: column;
-  height: 160px;
   align-items: center;
   justify-content: center;
 `;
@@ -42,22 +37,4 @@ const ItemContainer = styled.div`
 const Title = styled.h2`
   font-size: 32px;
   margin-left: 25%;
-`;
-
-const Item = styled.div`
-  display: flex;
-  background: white;
-  border-radius: 5px;
-  width: 50%;
-`;
-const ItemName = styled.h2`
-  font-size: 24px;
-  padding: 40px;
-  color: #5cbdb9;
-`;
-const ItemQuantity = styled.p`
-  padding: 40px;
-  font-size: 16px;
-  align-self: center;
-  padding: 10px;
 `;
