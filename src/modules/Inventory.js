@@ -7,17 +7,27 @@ const Inventory = ({ inventory }) => {
   const [shouldFilter, setShouldFilter] = useState(false);
   const items = inventory;
 
-  const handleClick = (items) => {
-    setShouldFilter(true);
-    return items.sort((item1, item2) =>
-      item1.quantity < item2.quantity ? 1 : item1.quantity > item2.quantity ? -1 : 0
-    );
+  const handleClick = (items, direction) => {
+    shouldFilter === true ? setShouldFilter(false) : setShouldFilter(true);
+
+    if (direction === "high") {
+      return items.sort((item1, item2) =>
+        item1.quantity < item2.quantity ? 1 : item1.quantity > item2.quantity ? -1 : 0
+      );
+    } else {
+      return items.sort((item1, item2) =>
+        item1.quantity < item2.quantity ? -1 : item1.quantity > item2.quantity ? 1 : 0
+      );
+    }
   };
 
   return (
     <Container>
       <Title>Products inventory</Title>
-      <SortButten onClick={() => handleClick(items)}>High to low</SortButten>
+      <ButtonContainer>
+        <SortButton onClick={() => handleClick(items, "high")}>High to low</SortButton>
+        <SortButton onClick={() => handleClick(items, "low")}>Low to High</SortButton>
+      </ButtonContainer>
       <ItemContainer>
         {items.map((item, index) => (
           <Item item={item} key={index} />
@@ -48,7 +58,12 @@ const Title = styled.h2`
   margin-left: 25%;
 `;
 
-const SortButten = styled(Button)`
+const ButtonContainer = styled.div`
+  display: flex;
   margin-left: 25%;
+`;
+
+const SortButton = styled(Button)`
+  margin-right: 20px;
   margin-bottom: 25px;
 `;
