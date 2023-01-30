@@ -1,16 +1,25 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Item from "./Item";
+import { Button } from "../components/common/button";
 
 const Inventory = ({ inventory }) => {
-  const sortedItems = inventory.sort((p1, p2) =>
-    p1.quantity < p2.quantity ? 1 : p1.quantity > p2.quantity ? -1 : 0
-  );
+  const [shouldFilter, setShouldFilter] = useState(false);
+  const items = inventory;
+
+  const handleClick = (items) => {
+    setShouldFilter(true);
+    return items.sort((item1, item2) =>
+      item1.quantity < item2.quantity ? 1 : item1.quantity > item2.quantity ? -1 : 0
+    );
+  };
 
   return (
     <Container>
       <Title>Products inventory</Title>
+      <SortButten onClick={() => handleClick(items)}>High to low</SortButten>
       <ItemContainer>
-        {sortedItems.map((item, index) => (
+        {items.map((item, index) => (
           <Item item={item} key={index} />
         ))}
       </ItemContainer>
@@ -37,4 +46,9 @@ const ItemContainer = styled.div`
 const Title = styled.h2`
   font-size: 32px;
   margin-left: 25%;
+`;
+
+const SortButten = styled(Button)`
+  margin-left: 25%;
+  margin-bottom: 25px;
 `;
