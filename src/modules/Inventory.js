@@ -1,4 +1,5 @@
 import { useInventory } from "../useInventory";
+import NoteForLastUnits from "./NoteForLastUnits";
 import styled from "styled-components";
 
 const Inventory = () => {
@@ -15,6 +16,7 @@ const Inventory = () => {
           <Item key={index}>
             <ItemName>{item.name}:</ItemName>
             <ItemQuantity>{item.quantity}</ItemQuantity>
+            {item.quantity < 25 ? <NoteForLastUnits /> : null}
           </Item>
         </ItemContainer>
       ))}
